@@ -1,0 +1,130 @@
+openapi: 3.0.1
+info:
+  title: cart-api
+  description: Cart API
+  version: 1.0.0
+servers:
+- url: /api/v1
+tags:
+- name: Products
+  description: Simple product endpoints
+- name: Specification
+  description: The swagger API specification
+paths:
+  /products:
+    get:
+      tags:
+      - Products
+      description: Fetch all products
+      responses:
+        200:
+          description: Returns all products
+          content: {}
+    post:
+      tags:
+      - Products
+      description: Create a new product
+      requestBody:
+        description: The schema of a new product
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductBody'
+        required: true
+      responses:
+        200:
+          description: Returns all products
+          content: {}
+  /products/{id}:
+    get:
+      tags:
+      - Products
+      parameters:
+      - name: id
+        in: path
+        description: The id of the product to retrieve
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: Return the product with the specified id
+          content: {}
+        404:
+          description: Product not found
+          content: {}
+  /quotes:
+    post:
+      tags:
+      - Quotes
+      description: Ask for a quote given a list
+      requestBody:
+        description: The result of quoting a list
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartBody'
+        required: true
+      responses:
+        200:
+          description: Returns the quoted elements and quoted list
+          content: {}
+        206:
+          description: Returns the some quoted elements and quoted list
+          content: {}
+        400:
+          description: The request was not formatted as server expected
+          content: {}
+        404:
+          description: Elements indexed in the request couldn't be found in server
+          content: {}
+  /spec:
+    get:
+      tags:
+      - Specification
+      responses:
+        200:
+          description: Return the API specification
+          content: {}
+components:
+  schemas:
+    ProductBody:
+      title: Product
+      required:
+      - name
+      - customerPrice
+      - cost
+      type: object
+      properties:
+        name:
+          type: string
+          example: Jam
+        customerPrice:
+          type: number
+          example: 1299
+        cost:
+          type: number
+          example: 1099
+    CartBody:
+      title: Cart
+      required:
+      - cartOrder
+      type: object
+      properties:
+        cartOrder:
+          required:
+          - cartItemsList
+          type: object
+          properties:
+            cartItemsList:
+              type: array
+              items:
+                required:
+                - id
+                - qty
+                type: object
+                properties:
+                  id:
+                    type: number
+                  qty:
+                    type: number
