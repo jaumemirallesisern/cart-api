@@ -7,7 +7,7 @@ export const checkCartFormat = async (req : Request, res : Response, next : Next
     if(req.body.cartOrder.cartItemsList.length === 0){
         return res.status(400).json({
             status : 400, 
-            message : `Bad request. Your list should not be empty`
+            message : `Bad request. Your list should not be empty.`
         }).end();
     };
 

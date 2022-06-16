@@ -13,8 +13,8 @@ router.route('/')
   // it may happen if the system evolves though.
   // Let me use "calculate" although we "create" the resource.
 
-  // Open-api middleware will do its job then only properly formatted cart lists will reach controller.
-  // Let's keep a middleware for extra checks beyond opena-pi
+  // Open-api middleware will do its job so only properly formatted cart lists will reach controller.
+  // Let's keep a middleware for extra checks beyond open-api
 
   .post(
     validateUser, // It could be a good place for identifying this user.
