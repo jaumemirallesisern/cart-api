@@ -21,7 +21,7 @@ const offers = [
         target_and : [ { id : 1, qty : 1 } ],
         extra : null,
         discount : [ { id : 1, disc : 10, onCostPrice : false } ],
-        dayOfTheWeek : [ 4 ], // asume Sunday is 0, Monday is 1...
+        dayOfTheWeek : [ 0 ], // asume Sunday is 0, Monday is 1...
         blockingOffers : null
     },
     {

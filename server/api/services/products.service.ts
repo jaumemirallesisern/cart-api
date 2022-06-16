@@ -1,6 +1,6 @@
 import L from '../../common/logger';
 import { CartOrder, Product, Quote, QuoteItemWithOffer, QuoteWithOffers } from '../interfaces/dataModel';
-import offers from '../../../bl/offers';
+import offers from '../../bl/offers';
 import moment from 'moment';
 
 
