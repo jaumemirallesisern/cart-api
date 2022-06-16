@@ -19,8 +19,10 @@ export default function routes(app: Application): void {
   // The data model could be something like this by now. 
   // Please note that I'm not specifying relational keys and inner fields 
   // as we are not dealing with real DB model.
-  // Product  ---> (1:N)  --->   QuoteItem   ---> (1:N)  --->   Quote
-  // Product  ---> (1:N)  --->   ChartItem   ---> (1:N)  --->   ChartOrder
+  // Product  ---> (1:N)  --->   QuoteItem   ---> (N:1)  --->   Quote
+  //          ---> (1:N)  --->   QuoteItemWithOffers   ---> (N:1)  --->   QuoteWithOffers
+  //                                                   ---> (1:N)  --->   Offer
+  // Product  ---> (1:N)  --->   ChartItem   ---> (N:1)  --->   ChartOrder
   // We wouldn't have many-to-many relations and the need for Join tables.
   app.use('/api/v1/quotes', quotesRouter);  
 

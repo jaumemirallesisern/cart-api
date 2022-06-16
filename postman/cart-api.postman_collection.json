@@ -108,6 +108,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Ask for a quote given a list (Apply offers)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cartOrder\" : {\n        \"cartItemsList\" : [\n            {\n                \"id\" : 1,\n                \"qty\" : 5\n            },\n            {\n                \"id\" : 2,\n                \"qty\" : 5\n            },\n            {\n                \"id\" : 3,\n                \"qty\" : 1\n            },\n            {\n                \"id\" : 4,\n                \"qty\" : 5\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/api/v1/quotes/apply-offers",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"quotes",
+						"apply-offers"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

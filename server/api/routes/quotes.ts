@@ -23,4 +23,13 @@ router.route('/')
     quoteController.calculate
   )
 
+router.route('/apply-offers')
+
+  .post(
+    validateUser, // It could be a good place for identifying this user.
+    authorizeUser, // It could be a good place for setting access rules (roles?...)
+    checkCartFormat, 
+    quoteController.calculateWithOffers
+  )
+
 export default router;

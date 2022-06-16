@@ -78,6 +78,31 @@ paths:
         404:
           description: Elements indexed in the request couldn't be found in server
           content: {}
+  /quotes/apply-offers:
+    post:
+      tags:
+      - Quotes
+      description: Apply offers in a given a list and get a quote
+      requestBody:
+        description: The result of quoting a list with offers applied
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartBody'
+        required: true
+      responses:
+        200:
+          description: Returns the quoted elements and quoted list
+          content: {}
+        206:
+          description: Returns the some quoted elements and quoted list
+          content: {}
+        400:
+          description: The request was not formatted as server expected
+          content: {}
+        404:
+          description: Elements indexed in the request couldn't be found in server
+          content: {}
   /spec:
     get:
       tags:

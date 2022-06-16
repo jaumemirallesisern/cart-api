@@ -9,6 +9,7 @@ export interface CartOrder {
 };
 
 export interface QuoteItem {
+    idProduct: number;
     name: string;
     quantity: number;
     unitPrice: number; // It's handy for BE & FE to keep both formats.
@@ -17,11 +18,29 @@ export interface QuoteItem {
     formattedItemPrice : string;
 }
 
+export interface Offer {
+    id: number;
+    title: string;
+    description: string;
+}
+
+export interface QuoteItemWithOffer extends QuoteItem {
+    extraQuantity: number;
+    appliedOffer: Offer;
+}
+
 export interface Quote {
     quoteItemsList: QuoteItem[];
     totalPrice: number;
     formattedTotalPrice: string;
     missingProducts: QuoteItem[];
+}
+
+export interface QuoteWithOffers extends Quote {
+    quoteItemsListAfter: QuoteItemWithOffer[];
+    totalPriceAfter: number;
+    formattedTotalPriceAfter: string;
+    pitch: string;
 }
 
 export interface Product {
