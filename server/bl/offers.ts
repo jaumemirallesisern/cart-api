@@ -32,7 +32,7 @@ const offers = [
         // What are the discounts applied for each product.
         discount : [ { id : 1, disc : 10, onCostPrice : false } ],
         // Which days of week will trigger this offer?
-        dayOfTheWeek : [ 0 ], // asume Sunday is 0, Monday is 1...
+        dayOfTheWeek : [ 4 ], // asume Sunday is 0, Monday is 1...
         blockingOffers : null
     },
     {

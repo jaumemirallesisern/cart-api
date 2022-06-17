@@ -6,6 +6,7 @@ import http from 'http';
 import os from 'os';
 import cookieParser from 'cookie-parser';
 import l from './logger';
+import cors from 'cors';
 
 import installValidator from './openapi';
 
@@ -14,6 +15,7 @@ const exit = process.exit;
 
 export default class ExpressServer {
   private routes: (app: Application) => void;
+
   constructor() {
     const root = path.normalize(__dirname + '/../..');
     app.set('appPath', root + 'client');
@@ -31,6 +33,21 @@ export default class ExpressServer {
     app.use(bodyParser.text({ limit: process.env.REQUEST_LIMIT || '100kb' }));*/
     app.use(cookieParser(process.env.SESSION_SECRET));
     app.use(express.static(`${root}/public`));
+
+    // Enable CORS for ongoing front-end development.
+    const whitelist = ["http://localhost:3000","http://localhost:3001"];
+    const corsOptions = {
+      origin: function (origin, callback) {
+        if (!origin || whitelist.indexOf(origin) !== -1) {
+          callback(null, true)
+        } else {
+          callback(new Error("Not allowed by CORS"))
+        }
+      },
+      credentials: true,
+    }
+    app.use(cors(corsOptions));
+    app.options('*', cors(corsOptions));  // enable pre-flight
   }
 
   router(routes: (app: Application) => void): ExpressServer {
